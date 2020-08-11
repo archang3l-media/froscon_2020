@@ -16,8 +16,248 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Ansible all the Things</h1>
+					<h3>Was mir dabei geholfen hat alles mit Ansible zu automatisieren</h3>
+					<p>
+						<small>Created by <a href="https://github.com/archang3l-media">Heiko Borchers</a> with <a href="https://github.com/hakimel/reveal.js/">reveal.js</a></small>
+					</p>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>Über mich</h2>
+						<ul>
+							<li>DevOps</li>
+							<li>Cloud Infrastructure</li>
+							<li>Automatisiert am liebsten alles weg</li>
+							<li>Terraform & Ansible im täglichen Einsatz</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Motivation</h2>
+						<p>
+							Ansible ist für mich das Tool der Wahl und auf Twitter hab ich dieses Jahr viel gelesen "ich würde es ja gern lernen, aber wie steige ich ein?"
+						</p>
+					</section>
+					<section>
+						<h3>Warum Ansible?</h3>
+						<ul>
+							<li>Agentless</li>
+							<li>Braucht keine zentrale Infrastruktur</li>
+							<li>Relativ leicht zu lernen</li>
+							<li>Open Source (GPL-3.0)</li>
+							<li>Eigentlich idempotent</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Bei der zentralen Infrastruktur auf AWX/Tower Hinweisen</li>
+								<li>Idempotenz erklären</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h3>Warum vielleicht doch nicht ansible?</h3>
+						<ul>
+							<li>Performance</li>
+							<li>YAML</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Basics</h1>
+					</section>
+					<section>
+						<h2>Ordnerstruktur</h2>
+						<pre><code data-trim data-noescape>.
+├── ansible.cfg
+├── credentials
+│   └── Server1.sha512
+├── group_vars
+│   └── Server1.yml
+├── hosts.yml
+├── playbook.yml
+├── roles
+│   ├── awx_requirements
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   │   ├── docker-ce.repo
+│   │   │   └── docker-compose.yml.j2
+│   │   └── vars
+│   │       └── main.yml</code></pre>
+					</section>
+					<section>
+						<h2>Die Ansible.cfg</h2>
+						<pre><code data-trim data-noescape>[defaults]
+inventory=./hosts.yml
+remote_user=root
+log_path=ansible.log
+gathering = smart
+fact_caching = jsonfile
+fact_caching_connection = .fact_cache/
+fact_caching_timeout = 86400
+vault_password_file=~/.pw/ansiblevault
+remote_tmp     = .ansible/tmp
+local_tmp      = .ansible/tmp
+                                                </code></pre>
+					</section>
+					<section>
+						<h2>Das Inventory:</h2>
+						<pre><code data-trim data-noescape>---
+MyServers:
+  hosts:
+    rootserver:
+      ansible_host: example.host
+      ansible_user: example_user
+      vars:
+        snmp_location: "Big Data Center"
+    raspi:
+      ansible_host: 192.168.1.1
+      ansible_user: root
+      vars:
+        snmp_location: "Somewhere in the House"
+WorkServers:
+[..]</code></pre>
+					</section>
+					<section>
+						<h2>Ein einfaches Playbook:</h2>
+						<pre><code data-trim data-noescape>
+- hosts: all
+  gather_facts: True
+  remote_user: root
+  become: yes
+  vars:
+    users:
+     - "{{all_users.my_username}}"
+  roles:
+    - role: packages
+    - role: date_time
+    - role: hosts
+    - role: user
+                                                </code> </pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Rollen:</h1>
+						<pre><code data-trim data-noescape>└── user
+    ├── README.md
+    ├── defaults
+    │   └── main.yml
+    ├── files
+    │   ├── my_username
+    │   ├── password_gen.py
+    │   └── sudoers.j2
+    ├── handlers
+    │   └── main.yml
+    ├── tasks
+    │   └── main.yml
+    └── vars
+        └── all_users.yml
+</code></pre>
+					</section>
+					<section>
+						<h2>defaults</h2>
+						<pre><code data-trim data-noescape>
+                                                        ---
+   non_unique: no
+   sudoers: False
+   user_update_password: no
+                                                </code></pre>
+					</section>
+					<section>
+						<h2>files</h2>
+						<p>
+							Dateien die ihr nicht als Templates habt, sondern so wie sie sind auf dem Zielcomputer haben wollt</p>
+					</section>
+					<section><pre><code data-trim data-noescape>---
+ - name: Copy sudoers file for safety
+   command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+ - name: Create sudoers file backup
+   command: cp -f /etc/sudoers /etc/sudoers.bak
+
+ - name: make sure we can sudo as admin group
+   lineinfile: dest=/etc/sudoers.tmp state=present regexp='^%admin' line='%admin ALL=(ALL) ALL'
+
+ - name: also make sure ssh-agent works via sudo
+   lineinfile: dest=/etc/sudoers.tmp state=present regexp='^Defaults env_keep\+\=SSH_AUTH_SOCK' line='Defaults env_keep+=SSH_AUTH_SOCK'
+
+ - name: Final sudoers file check
+   shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+
+ - name: restart ssh daemon
+   service: name=sshd state=restarted</code></pre></section>
+					<section>
+						<h2>handlers</h2>
+						<pre><code data-trim data-noescape>---
+  - name: restart ssh daemon
+    service: name=sshd state=restarted
+                                                </code></pre>
+					</section>
+					<section>
+						<h2>Tasks (1/2)</h2>
+						<pre><code data-trim data-noescape>---
+- name: installing base software
+  package:
+    name: "{{os_packages[ansible_os_family][item]}}"
+    state: present
+  with_items:
+    - vim
+    - nginx
+	- ansible
+                                                </code></pre>
+					</section>
+					<section>
+						<h2>Tasks (2/2)</h2>
+						<pre><code data-trim data-noescape>---
+- name: secure ssh daemon
+  lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin without-password"
+  when: permitrootlogin is not defined
+  notify: restart ssh daemon
+  tags:
+    - new_system
+                                                </code></pre>
+					</section>
+					<section>
+						<h2>vars (1/2)</h2>
+						<pre><code data-trim data-noescape>
+                                                        ---
+os_packages:
+    Debian:
+        monitoring_Plugins: monitoring-plugins-basic
+    RedHat:
+        monitoring-plugins: nagios-plugins
+    ArchLinux:
+        monitoring-plugins: monitoring-plugins
+                                                </code></pre>
+					</section>
+					<section>
+						<h2>Vars (2/2)</h2>
+						<pre><code data-trim data-noescape>
+                                                        vault_masterpassword: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          13372342133723421337234213372342133723421337234213372342133723421337234213372342
+          13372342133723421337234213372342133723421337234213372342133723421337234213372342
+          13372342133723421337234213372342133723421337234213372342133723421337234213372342
+          13372342133723421337234213372342133723421337234213372342133723421337234213372342
+          1337
+                                                </code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>Danke für eure Aufmerksamkeit</h2>
+					<p>Den Code für die Slides findet ihr auf <a href="https://github.com/archang3l-media/froscon_2020">Github</a><br> und auf
+						<a href="https://borchers.ninja/froscon">Meinem Server</a></p>
+				</section>
 			</div>
 		</div>
 
@@ -31,10 +271,13 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+				slideNumber: true,
+				showNotes: 'separate-page',
+				pdfSeparateFragments: false,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>
 	</body>
+	<!-- Any section element inside of this container is displayed as a slide -->
 </html>
