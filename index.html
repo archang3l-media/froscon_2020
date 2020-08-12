@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="de">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -243,20 +243,25 @@ os_packages:
 					<section>
 						<h2>Vars (2/2)</h2>
 						<pre><code data-trim data-noescape>
-                                                        vault_masterpassword: !vault |
+vault_masterpassword: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           13372342133723421337234213372342133723421337234213372342133723421337234213372342
           13372342133723421337234213372342133723421337234213372342133723421337234213372342
           13372342133723421337234213372342133723421337234213372342133723421337234213372342
           13372342133723421337234213372342133723421337234213372342133723421337234213372342
-          1337
+          13372342
                                                 </code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Wie fängt man an?</h3>
 					</section>
 				</section>
 				<section>
 					<h2>Danke für eure Aufmerksamkeit</h2>
 					<p>Den Code für die Slides findet ihr auf <a href="https://github.com/archang3l-media/froscon_2020">Github</a><br> und auf
-						<a href="https://borchers.ninja/froscon">Meinem Server</a></p>
+						<a href="https://borchers.ninja/froscon2020">Meinem Server</a></p>
 				</section>
 			</div>
 		</div>
@@ -272,7 +277,6 @@ os_packages:
 			Reveal.initialize({
 				hash: true,
 				slideNumber: true,
-				showNotes: 'separate-page',
 				pdfSeparateFragments: false,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
