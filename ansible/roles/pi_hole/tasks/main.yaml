@@ -11,7 +11,7 @@
 
 - name: "Download Pi-Hole installer"
   get_url:
-    url: {{  pihole_installer_url  }}
+    url: "{{  pihole_installer_url  }}"
     dest: ~/install-pihole.sh
     mode: 0740
 
