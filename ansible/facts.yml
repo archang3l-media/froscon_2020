@@ -1,0 +1,14 @@
+---
+- hosts: service_pi
+  gather_facts: True
+  remote_user: pi
+  become_method: sudo
+  vars:
+    users:
+     - "{{all_users.rborchers}}"
+  tasks:
+    - name: gather facts
+      setup:
+        fact_path: /mnt/f/Pycharm Projects/froscon_2020/ansible/facts/
+        gather_subset:
+          - all

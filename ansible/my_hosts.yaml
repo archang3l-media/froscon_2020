@@ -1,0 +1,27 @@
+---
+Servers:
+    hosts:
+        rootserver:
+            ansible_host: borchers.ninja
+            ansible_user: archangel
+            hostvars:
+                snmp_location: "NetCup"
+                ntp_enabled: True
+                ntp_manage_config: True
+            groups: [remote_servers]
+        new_server:
+            ansible_host: archangel-media.dev
+            ansible_user: rborchers
+            hostvars:
+                snmp_location: "NetCup"
+                ntp_enabled: True
+                ntp_manage_config: True
+            groups: [remote_servers]
+        service_pi:
+          ansible_host: 192.168.1.24
+          ansible_user: pi
+          groups: [local_stuff]
+          hostvars:
+            snmp_location: "Gute Frage. Liegt irgendwo rum"
+            ntp_enabled: True
+            ntp_manage_config: True

@@ -1,0 +1,12 @@
+---
+- name: Install Netplan
+  package:
+    name: netplan.io
+    state: present
+- name: Copy the Network Template
+  template:
+    src: ethernet.yaml.j2
+    dest: /etc/netplan/ethernet.yaml
+
+- name: Apply Netplan Template
+  shell: netplan apply

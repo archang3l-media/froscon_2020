@@ -1,0 +1,19 @@
+network:
+    version: 2
+    ethernets:
+        eth0:
+            addresses:
+              - {{  ansible_default_ipv4.address  }}/24
+              - {{  ansible_default_ipv6.address  }}/64
+            match:
+                macaddress: {{  ansible_default_ipv4.macaddress  }}
+            set-name: eth0
+            mtu: 9001
+            gateway4: {{  ansible_default_ipv4.gateway  }}
+            gateway6: {{  ansible_default_ipv6.gateway  }}
+            nameservers:
+              addresses: [8.8.8.8, 8.8.4.4]
+            routes:
+              - to: 0.0.0.0/0
+                via: {{  ansible_default_ipv4.gateway  }}
+                on-link: true
