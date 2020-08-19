@@ -14,4 +14,4 @@
     - role: date_time
       ntp_enabled: true
     - role: fail2ban
-#    - role: pi_hole
+    - role: pi_hole

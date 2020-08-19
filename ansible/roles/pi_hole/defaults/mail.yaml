@@ -1,0 +1,10 @@
+---
+pihole_install_url: https://raw.githubusercontent.com/pi-hole/pi-hole/master/automated%20install/basic-install.sh
+gateway_ip: "{{  ansible_default_ipv4.gateway  }}"
+network_interface: eth0
+fspath_pihole_config: /etc/pihole/
+ipv4_static: True
+ipv6: True
+dns_servers:
+  - "8.8.8.8"
+  - "8.8.4.4"

@@ -43,4 +43,3 @@
     src: ntp.conf.j2
     dest: /etc/ntp.conf
   notify: restart ntp
-  when: ntp_manage_config

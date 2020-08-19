@@ -7,7 +7,6 @@ network:
               - {{  ansible_default_ipv6.address  }}/64
             match:
                 macaddress: {{  ansible_default_ipv4.macaddress  }}
-            set-name: eth0
             mtu: 9001
             gateway4: {{  ansible_default_ipv4.gateway  }}
             gateway6: {{  ansible_default_ipv6.gateway  }}

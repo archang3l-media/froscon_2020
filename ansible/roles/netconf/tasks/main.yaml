@@ -3,10 +3,21 @@
   package:
     name: netplan.io
     state: present
+
 - name: Copy the Network Template
   template:
     src: ethernet.yaml.j2
     dest: /etc/netplan/ethernet.yaml
+
+- name: Delete broken config (something with raspian and netplan)
+  file:
+    path: /etc/systemd/network/99-default.link
+    state: absent
+
+- name: Restart Network Service
+  systemd:
+    name: networking
+    state: restarted
 
 - name: Apply Netplan Template
   shell: netplan apply

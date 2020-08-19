@@ -1,0 +1,57 @@
+---
+
+- name: "Setting hostname to 'pihole'"
+  hostname:
+    name: pihole
+
+- name: 'Update APT package cache'
+  apt:
+    update_cache: yes
+    upgrade: safe
+
+- name: "Download Pi-Hole installer"
+  get_url:
+    url: https://install.pi-hole.net
+    dest: ~/install-pihole.sh
+    mode: 0740
+
+- name: Create pihole configuration directory
+  become: True
+  file:
+    name="{{ fspath_pihole_config }}"
+    state=directory
+    owner="{{ user_pihole }}"
+    group="{{ group_pihole }}"
+    mode=0755
+
+- name: Create pihole configuration
+  become: True
+  template:
+    src="setupVars.conf.j2"
+    dest="{{ fspath_pihole_config }}/pihole-setupVars.conf"
+    owner=root
+    group=root
+    mode=0644
+
+- name: Install Pi-Hole
+  shell: "~/install-pihole.sh --unattended"
+  register: dbg_install_pihole
+  tags: pihole
+
+- name: Set PiHole to update every week
+  become: True
+  replace:
+    path: /etc/cron.d/pihole
+    regexp: '^#(.*updatePihole.*)$'
+    replace: '\1'
+    backup: yes
+
+#- name: 'Reboot'
+#  shell: sleep 2 && reboot
+#  async: 1
+#  poll: 0
+#  ignore_errors: true
+#
+#- name: "Wait for Raspberry PI to come back"
+#  local_action: wait_for host={{ ansible_host }} port=22 state=started delay=10
+#  become: false
