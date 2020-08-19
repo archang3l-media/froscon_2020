@@ -2,10 +2,26 @@
 gateway_ip: "{{  ansible_default_ipv4.gateway  }}"
 network_interface: eth0
 fspath_pihole_config: /etc/pihole/
-user_pihole: pihole
-group_pihole: pihole
+pihole_installer_url: https://install.pi-hole.net
 ipv4_static: True
 ipv6: True
 dns_servers:
   - "8.8.8.8"
   - "8.8.4.4"
+pihole_blocking_enabled: true
+pihole_query_logging: true
+pihole_install_web: true
+pihole_lighttpd_enabled: 1
+pihole_api_exclude_domains:
+pihole_api_exclude_clients:
+pihole_api_query_log_show: all
+pihole_api_privacy_mode: false
+pihole_webuiboxedlayout: boxed
+pihole_webtheme: default-dark
+pihole_dnsmasq_listening: single
+pihole_dns_1: 127.0.0.1#5053
+pihole_dns_fqdn_required: true
+pihole_dns_bogus_priv: true
+pihole_dnssec: false
+pihole_rev_server: false
+pihole_temperatureunit: C

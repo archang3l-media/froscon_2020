@@ -11,24 +11,28 @@
 
 - name: "Download Pi-Hole installer"
   get_url:
-    url: https://install.pi-hole.net
+    url: {{  pihole_installer_url  }}
     dest: ~/install-pihole.sh
     mode: 0740
+
+- name: Blacklist WiFi and Bluetooth drivers
+  copy:
+    src: files/raspi-blacklist.conf
+    dest: /etc/modprobe.d/raspi-blacklist.conf
+    mode: "600"
 
 - name: Create pihole configuration directory
   become: True
   file:
     name="{{ fspath_pihole_config }}"
     state=directory
-    owner="{{ user_pihole }}"
-    group="{{ group_pihole }}"
     mode=0755
 
 - name: Create pihole configuration
   become: True
   template:
     src="setupVars.conf.j2"
-    dest="{{ fspath_pihole_config }}/pihole-setupVars.conf"
+    dest="{{ fspath_pihole_config }}/setupVars.conf"
     owner=root
     group=root
     mode=0644
