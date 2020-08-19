@@ -1,0 +1,7 @@
+[home_vbernat]
+name=vbernat's Home Project (CentOS_7)
+type=rpm-md
+baseurl=http://repo.test.hhu.de/lldpd/CentOS_7/
+gpgcheck=1
+gpgkey=http://repo.test.hhu.de/lldpd/CentOS_7/repodata/repomd.xml.key
+enabled=1

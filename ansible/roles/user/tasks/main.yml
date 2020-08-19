@@ -1,0 +1,80 @@
+---
+ - include_vars: all_users.yml
+
+ - debug: msg="Loaded all Users {{ all_users|length }}"  
+
+ - name: Enabled Users
+   debug: var=users
+  
+ - name: Passwort/Key wird erstellt...
+   local_action: script password_gen.py -n {{ inventory_hostname }} -f {{ ansible_fqdn }} creates="credentials/{{ inventory_hostname }}.sha512"
+   when: root_ssh_key is defined
+   tags: 
+      - passwords
+
+ - name: Gruppen SSH-Key wird erstellt...
+   local_action: script password_gen.py -k -n {{ root_ssh_key }} creates="credentials/{{ root_ssh_key }}.pub"
+   when: root_ssh_key is defined
+   tags: 
+      - passwords
+
+ - name: Adding group(s)
+   group: name="{{ item.group }}" state=present
+          gid="{{ item.group_id }}"
+   with_items: " {{ users }} "
+   when: (users | default([])) | length
+   tags:
+       - new_system
+       
+ - name: Create User(s)
+   user: name="{{ item.login }}"
+         comment="{{ item.name }}" 
+         group="{{ item.group }}"
+         state=present 
+         non_unique="{{ item.non_unique }}" 
+         shell="{{ item.shell }}"
+         password="{{ item.password }}"
+         uid="{{ item.uid }}"
+         update_password="{{ item.update_password }}"
+   with_items: "{{ users }}"
+   when: (users | default([])) | length
+   tags:
+       - new_system
+         
+ - name: Add authorized key
+   authorized_key: user={{ item.login }} key="{{ item.ssh_key }}" exclusive=yes
+   with_items: " {{ users }} "
+   when: 
+    - (users | default([])) | length
+    - item.ssh_key is defined
+   tags:
+       - new_system
+   ignore_errors: True
+          
+ - name: secure ssh daemon
+   lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin without-password"
+   when: permitrootlogin is not defined
+   notify: restart ssh daemon
+   tags:
+       - new_system
+ - name: Delete wrong PermitRootLogin line
+   lineinfile: dest=/etc/ssh/sshd_config state=absent regexp="^#PermitRootLogin"
+   #lineinfile: dest=/etc/ssh/sshd_config regexp=^AllowGroups line=AllowGroups admin
+   tags:
+       - new_system
+
+ - name: Sync User files
+   synchronize:
+    src: "files/{{ item.login }}/"
+    dest: "/home/{{  item.login }}/"
+    mode: push
+#    archive: yes
+    group: no
+    owner: no
+    times: yes
+    rsync_opts:
+      - "--no-perms"
+      - "--no-group"
+      - "--no-owner"
+   with_items: " {{ users }} "
+   when: (users | default([])) | length

@@ -1,0 +1,20 @@
+fail2ban_services:
+  ssh:
+    port: ssh
+    filter: sshd
+    logpath: /var/log/auth.log
+
+  smtp:
+    port: smtp,smtps
+    filter: postfix
+    logpath: /var/log/mail.log
+
+  dovecot:
+    port: imap,imaps
+    filter: dovecot
+    logpath: /var/log/dovelog
+
+  sasl:
+    port: smtp,ssmtp,imap,imaps
+    filter: sasl
+    logpath: /var/log/mail.log

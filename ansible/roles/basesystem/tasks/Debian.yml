@@ -1,0 +1,6 @@
+---
+# tasks file for debian_basesystem
+- name: dpkg-log sent to journalctl
+  lineinfile: 
+   dest: /etc/dpkg/dpkg.cfg
+   line: 'status-logger "logger -t dpkg -p info"'

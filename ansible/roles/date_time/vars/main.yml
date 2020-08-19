@@ -1,0 +1,11 @@
+---
+ntp_timezone: Europe/Berlin
+ntp_restrict:
+  - -4 default nomodify nopeer noquery notrap
+  - -6 default nomodify nopeer noquery notrap
+  - 127.0.0.1
+  - ::1
+ntp_servers:
+  - ptbtime1.ptb.de
+  - ptbtime2.ptb.de
+  - ptbtime3.ptb.de

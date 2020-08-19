@@ -1,0 +1,28 @@
+---
+- name: installing fail2ban
+  package:
+    name: "{{os_packages[ansible_os_family][item]}}"
+    state: present
+  with_items:
+      - fail2ban
+  notify:
+    - restart fail2ban
+
+- name: setup contact mail
+  set_fact:
+    fail2ban_destemail: "{{system_email}}"
+  when: system_email is defined
+
+- name: load os specific service definitions
+  include_vars: "{{ansible_os_family}}.yml"
+
+- name: ensure fail2ban is configured
+  template: src={{ item }}.j2 dest=/{{ item }}
+  with_items:
+    - etc/fail2ban/jail.local
+    - etc/fail2ban/fail2ban.local
+  notify:
+    - restart fail2ban
+
+- name: ensure fail2ban starts on a fresh reboot
+  service: name=fail2ban state=started enabled=yes

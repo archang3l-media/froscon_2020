@@ -1,0 +1,8 @@
+---
+os_packages:
+    Debian:
+        fail2ban: fail2ban
+    RedHat:
+        fail2ban: fail2ban
+    Archlinux:
+        fail2ban: fail2ban

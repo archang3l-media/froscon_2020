@@ -1,0 +1,300 @@
+[rhel-7-server-optional-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rhn-tools-beta-debug-rpms]
+name = RHN Tools for Red Hat Enterprise Linux 7 Server Beta (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rhn-tools-beta-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rhn-tools-debug-rpms]
+name = RHN Tools for Red Hat Enterprise Linux 7 Server (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rhn-tools-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-beta-source-rpms]
+name = Red Hat Enterprise Linux 7 Server Beta (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-beta-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rpms]
+name = Red Hat Enterprise Linux 7 Server (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rpms
+enabled = 1
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-beta-rpms]
+name = Red Hat Enterprise Linux 7 Server Beta (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-beta-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-extras-rpms]
+name = Red Hat Enterprise Linux 7 Server - Extras (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-extras-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rh-common-beta-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - RH Common Beta (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rh-common-beta-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-supplementary-beta-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - Supplementary Beta (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-supplementary-beta-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rhn-tools-beta-rpms]
+name = RHN Tools for Red Hat Enterprise Linux 7 Server Beta (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rhn-tools-beta-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rh-common-beta-rpms]
+name = Red Hat Enterprise Linux 7 Server - RH Common Beta (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rh-common-beta-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-supplementary-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - Supplementary (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-supplementary-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-thirdparty-oracle-java-beta-rpms]
+name = Red Hat Enterprise Linux 7 Server - Oracle Java Beta (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-thirdparty-oracle-java-beta-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rhn-tools-rpms]
+name = RHN Tools for Red Hat Enterprise Linux 7 Server (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rhn-tools-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-extras-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - Extras (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-extras-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-thirdparty-oracle-java-rpms]
+name = Red Hat Enterprise Linux 7 Server - Oracle Java (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-thirdparty-oracle-java-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-fastrack-rpms]
+name = Red Hat Enterprise Linux 7 Server - Fastrack (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-fastrack-rpms
+enabled = 1
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-beta-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional Beta (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-beta-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rh-common-rpms]
+name = Red Hat Enterprise Linux 7 Server - RH Common (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rh-common-rpms
+enabled = 1
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-thirdparty-oracle-java-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Oracle Java (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-thirdparty-oracle-java-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-fastrack-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional Fastrack (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-fastrack-rpms
+enabled = 1
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-fastrack-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional Fastrack (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-fastrack-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rh-common-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - RH Common (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rh-common-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-supplementary-rpms]
+name = Red Hat Enterprise Linux 7 Server - Supplementary (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-supplementary-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rhn-tools-beta-source-rpms]
+name = RHN Tools for Red Hat Enterprise Linux 7 Server Beta (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rhn-tools-beta-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-fastrack-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Fastrack (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-fastrack-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-source-rpms]
+name = Red Hat Enterprise Linux 7 Server (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-rpms
+enabled = 1
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rh-common-beta-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - RH Common Beta (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rh-common-beta-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-extras-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Extras (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-extras-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-supplementary-beta-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Supplementary Beta (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-supplementary-beta-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-supplementary-beta-rpms]
+name = Red Hat Enterprise Linux 7 Server - Supplementary Beta (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-supplementary-beta-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-beta-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional Beta (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-beta-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-fastrack-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional Fastrack (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-fastrack-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rhn-tools-source-rpms]
+name = RHN Tools for Red Hat Enterprise Linux 7 Server (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rhn-tools-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-fastrack-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server - Fastrack (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-fastrack-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-rh-common-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - RH Common (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-rh-common-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-supplementary-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Supplementary (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-supplementary-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-thirdparty-oracle-java-beta-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Oracle Java Beta (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-thirdparty-oracle-java-beta-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-beta-debug-rpms]
+name = Red Hat Enterprise Linux 7 Server Beta (Debug RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-beta-debug-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-beta-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional Beta (RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-beta-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[rhel-7-server-optional-source-rpms]
+name = Red Hat Enterprise Linux 7 Server - Optional (Source RPMs)
+baseurl = http://repo.test.hhu.de/rhel/rhel-7-server-optional-source-rpms
+enabled = 0
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release

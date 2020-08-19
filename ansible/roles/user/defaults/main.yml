@@ -1,0 +1,4 @@
+---
+   non_unique: no
+   sudoers: False
+   user_update_password: no

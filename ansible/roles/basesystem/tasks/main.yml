@@ -1,0 +1,111 @@
+---
+- name: installing base software
+  package:
+    name: "{{os_packages[ansible_os_family][item]}}"
+    state: present
+  with_items:
+    - vim
+    - telnet
+    - htop
+    - zsh
+    - selinux-python
+    - tcpdump
+    - rsync
+    - arping
+    - whois
+    - aptitude
+    - bind-utils
+    - iperf
+    - net-tools
+  when:
+    - (os_packages[ansible_os_family][item] | default(''))| length
+
+- name: check for selinux
+  stat: path="/etc/selinux/config"
+  register: stat_selinux
+
+- name: set selinux state
+  selinux:
+    policy: targeted
+    state: "{{selinux_state}}"
+  when: stat_selinux.stat.exists is defined and stat_selinux.stat.exists
+
+- name: LLDP on physical server
+  block:
+    - name: installing LLDP
+      package:
+        name: "{{os_packages[ansible_os_family][item]}}"
+        state: present
+      with_items:
+        - lldpd
+
+    - name: configure LLDP
+      service:
+        name: lldpd
+        enabled: yes
+        state: started
+#  when: ansible_virtualization_type=="NA" or ansible_virtualization_role=="host"
+
+#- name: VMWare Tools for ESX-VMs
+#  block:
+#    - name: installing VMWare Tools
+#      package:
+#        name: open-vm-tools
+#        state: present
+
+#    - name: enabling VMWare Tools - RedHat
+#      service:
+#        name: vmtoolsd
+#        enabled: yes
+#        state: started
+#      when: ansible_os_family=='RedHat'
+
+#    - name: enabling VMWare Tools - Debian
+#      service:
+#        name: open-vm-tools
+#        enabled: yes
+#        state: started
+#      when: ansible_os_family=='Debian'
+#  when: ansible_virtualization_type=="VMware"
+
+- name: disabling net.ipv4.tcp_timestamps
+  copy:
+    src: templates/99-net.ipv4.tcp_timestamps.conf
+    dest: /etc/sysctl.d/99-net.ipv4.tcp_timestamps.conf
+    group: root
+    owner: root
+
+- name: Configuring users for host
+  include_role:
+    name: user
+  when: users is defined
+  tags:
+    - users
+
+- name: set timezone to Europe/Berlin
+  timezone:
+    name: Europe/Berlin
+
+- name: check hostname in local /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: "^{{ item }}"
+    line: "{{ item }} {{ ansible_fqdn }} {{ ansible_hostname }}"
+  with_items: "{{ ansible_all_ipv4_addresses }}"
+  when:
+    - set_hostnames == True
+    - ansible_hostname  == inventory_hostname
+
+- name: check hostname in local /etc/hosts (where ansible_hostname differs from inventory_hostname)
+  lineinfile:
+    dest: /etc/hosts
+    regexp: "^{{ item }}"
+    line: "{{ item }} {{ ansible_fqdn }} {{ ansible_hostname }} {{ inventory_hostname}}"
+  with_items: "{{ ansible_all_ipv4_addresses }}"
+  when:
+    - set_hostnames == True
+    - ansible_hostname != inventory_hostname
+
+- name: set hostname
+  hostname: name={{ system_hostname }}
+  when: system_hostname is defined

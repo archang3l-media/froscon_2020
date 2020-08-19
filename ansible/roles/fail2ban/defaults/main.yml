@@ -1,0 +1,21 @@
+---
+fail2ban_loglevel: INFO
+fail2ban_logtarget: SYSLOG
+fail2ban_socket: /var/run/fail2ban/fail2ban.sock
+fail2ban_pid: /var/run/fail2ban/fail2ban.pid
+
+fail2ban_ignoreip: 127.0.0.1/8 10.64.0.0/16
+fail2ban_bantime: 86400
+fail2ban_maxretry: 10
+
+fail2ban_backend: polling
+
+fail2ban_destemail: root@localhost
+fail2ban_banaction: iptables-multiport
+fail2ban_mta: sendmail
+fail2ban_protocol: tcp
+fail2ban_chain: INPUT
+
+fail2ban_action: action_
+
+fail2ban_services_enabled: [ssh]

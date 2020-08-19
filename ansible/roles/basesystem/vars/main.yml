@@ -1,0 +1,56 @@
+---
+os_packages:
+    Debian:
+        vim: vim
+        telnet: telnet
+        htop: htop
+        zsh: zsh
+        selinux-python: python-selinux
+        tcpdump: tcpdump
+        rsync: rsync
+        arping: arping
+        whois: whois
+        lldpd: lldpd
+        aptitude: aptitude
+        bind-utils: dnsutils
+        iperf: iperf
+        net-tools: net-tools
+        nrpe: nagios-nrpe-server
+        monitoring-plugins: monitoring-plugins-basic
+        openvpn: openvpn
+    RedHat:
+        vim: vim
+        telnet: telnet
+        htop: htop
+        zsh: zsh
+        selinux-python: libselinux-python
+        tcpdump: tcpdump
+        rsync: rsync
+        arping: iputils
+        whois: whois
+        lldpd: lldpd
+        aptitude: ''
+        bind-utils: bind-utils
+        iperf: iperf
+        net-tools: net-tools
+        nrpe: nrpe
+        monitoring-plugins: nagios-plugins
+        openvpn: openvpn
+    Archlinux:
+        vim: vim
+        telnet: inetutils
+        htop: htop
+        zsh: zsh
+        selinux-python: ''
+        tcpdump: tcpdump
+        rsync: rsync
+        arping: iputils
+        whois: whois
+        lldpd: lldpd
+        aptitude: ''
+        bind-utils: ''
+        iperf: iperf
+        net-tools: net-tools
+        nrpe: nrpe
+        monitoring-plugins: monitoring-plugins
+        openvpn: openvpn

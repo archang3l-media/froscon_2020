@@ -1,0 +1,24 @@
+all_users:
+    rborchers:
+        login: rborchers
+        name: Heiko Borchers
+        password: None
+        group: ADMINS
+        group_id: 2002
+        non_unique: yes
+        uid: 0
+        update_password: always
+        ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCUdobeVtZZn9e8fVGOSjzolRkWIE4ckBfrG0gj1BBF8m+B0669+BbADESdyNi3zgZO3/i2uakYvhJ9EgorwBX7hg56yMSeBIKMHTiFu8B0U6T/61cH+S87yLR5CxaaCAfvU9d6Nb6hEEz0wmO7SAtrYWcc8z9CDR8YOBfQNvOHob8B233v4Al2NR+HMrVhtEdAt/pNySQ3x4IZbUw6sLGL6zc6Dtfm6AYV+ZXrV04MYTviPX3q415MZjOcTPjJKtYfpyJPQpIqDQ4Tc2wDRyCs7b5wNqSSgnF85JrwXD0gHuKy3ym6fES9MtjLnV35fVS0cQopP16YciInENjGMNs/ heikoborchers@Heikos-MacBook-Pro.local1"
+        shell: /bin/zsh
+
+    root:
+        login: root
+        name: root
+        password: "{{ lookup('password', 'credentials/{{ inventory_hostname }}.sha512')}}"
+        group: ADMINS
+        group_id: 2000
+        non_unique: yes
+        uid: 0
+        ssh_key: "credentials/linux_server.pub"
+        update_password: always
+        shell: /bin/bash

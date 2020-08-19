@@ -1,0 +1,17 @@
+- hosts: service_pi
+  gather_facts: True
+  remote_user: pi
+  become: true
+  vars_files:
+    - "roles/user/vars/all_users.yml"
+  vars:
+    users:
+     - "{{all_users.rborchers}}"
+  roles:
+    - role: basesystem
+    - role: netconf
+    - role: user
+    - role: date_time
+      ntp_enabled: true
+    - role: fail2ban
+#    - role: pi_hole

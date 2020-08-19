@@ -1,0 +1,13 @@
+---
+system_admin: root user
+system_email: root@localhost
+system_location: "ESX"
+debian_repo_url: http://repo.test.hhu.de/debian
+debian_release: stable
+
+selinux_state: permissive
+epel_enabled: true
+ius_enabled: false
+webtatic_enabled: false
+set_hostnames: true
+scl_enabled: false
