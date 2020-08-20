@@ -1,0 +1,17 @@
+/ansible/.fact_cache/
+/ansible/.*/
+/ansible/credentials/
+.idea/
+*.iml
+*.iws
+*.eml
+out/
+.DS_Store
+.svn
+log/*.log
+tmp/**
+node_modules/
+.sass-cache
+dist/*.map
+*.sha512
+.github/

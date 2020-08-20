@@ -25,3 +25,11 @@ Servers:
             snmp_location: "Gute Frage. Liegt irgendwo rum"
             ntp_enabled: True
             ntp_manage_config: True
+        raspberry_pi_4:
+          ansible_host: 192.168.1.23
+          ansible_user: pi
+          groups: [local_stuff]
+          hostvars:
+            snmp_location: "Gute Frage. Liegt irgendwo anders rum"
+            ntp_enabled: True
+            ntp_manage_config: True

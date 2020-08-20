@@ -5,9 +5,6 @@ fspath_pihole_config: /etc/pihole/
 pihole_installer_url: https://install.pi-hole.net
 ipv4_static: True
 ipv6: True
-dns_servers:
-  - "8.8.8.8"
-  - "8.8.4.4"
 pihole_blocking_enabled: true
 pihole_query_logging: true
 pihole_install_web: true
@@ -19,7 +16,8 @@ pihole_api_privacy_mode: false
 pihole_webuiboxedlayout: boxed
 pihole_webtheme: default-dark
 pihole_dnsmasq_listening: single
-pihole_dns_1: 127.0.0.1#5053
+pihole_dns_1: 8.8.8.8
+pihole_dns_2: 8.8.4.4
 pihole_dns_fqdn_required: true
 pihole_dns_bogus_priv: true
 pihole_dnssec: false

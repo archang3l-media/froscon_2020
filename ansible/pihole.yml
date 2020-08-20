@@ -1,4 +1,4 @@
-- hosts: service_pi
+- hosts: service_pi, raspberry_pi_4
   gather_facts: True
   remote_user: pi
   become: true
