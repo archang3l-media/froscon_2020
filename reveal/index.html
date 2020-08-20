@@ -214,8 +214,7 @@ WorkServers:
   with_items:
     - vim
     - nginx
-	- ansible
-                                                </code></pre>
+    - ansible</code></pre>
 					</section>
 					<section>
 						<h2>Tasks (2/2)</h2>
@@ -225,8 +224,7 @@ WorkServers:
   when: permitrootlogin is not defined
   notify: restart ssh daemon
   tags:
-    - new_system
-                                                </code></pre>
+    - new_system</code></pre>
 					</section>
 					<section>
 						<h2>vars (1/2)</h2>
@@ -265,8 +263,11 @@ vault_masterpassword: !vault |
 						</figure>
 					</section>
 					<section>
-						<h2>Ein einfaches Projekt:</h2>
+						<h2>Ein "einfaches" Projekt:</h2>
 						<p>Der Raspberry Pi als DNS Ad-Blocker und NTP Server</p>
+					</section>
+					<section>
+						<h2>Demo Time</h2>
 					</section>
 				</section>
 				<section>
@@ -287,7 +288,6 @@ vault_masterpassword: !vault |
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-				slideNumber: true,
 				pdfSeparateFragments: false,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]

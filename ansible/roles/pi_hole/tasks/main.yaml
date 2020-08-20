@@ -15,12 +15,6 @@
     dest: ~/install-pihole.sh
     mode: 0740
 
-- name: Blacklist WiFi and Bluetooth drivers
-  copy:
-    src: files/raspi-blacklist.conf
-    dest: /etc/modprobe.d/raspi-blacklist.conf
-    mode: "600"
-
 - name: Create pihole configuration directory
   become: True
   file:
