@@ -14,6 +14,12 @@
     path: /etc/systemd/network/99-default.link
     state: absent
 
+- name: Blacklist WiFi and Bluetooth drivers
+  copy:
+    src: files/raspi-blacklist.conf
+    dest: /etc/modprobe.d/raspi-blacklist.conf
+    mode: "600"
+
 - name: Restart Network Service
   systemd:
     name: networking
