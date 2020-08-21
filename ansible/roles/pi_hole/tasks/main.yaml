@@ -9,17 +9,25 @@
     update_cache: yes
     upgrade: safe
 
+- name: Check that the somefile.conf exists
+  stat:
+    path: /usr/local/bin/pihole
+  register: stat_result
+
 - name: "Download Pi-Hole installer"
   get_url:
     url: "{{  pihole_installer_url  }}"
     dest: ~/install-pihole.sh
     mode: 0740
+  when: not stat_result.stat.exists
 
 - name: Rename whiptail to fix some annoying bugs in the pihole installer
   command: mv /usr/bin/whiptail /usr/bin/whiptail.bak
+  when: not stat_result.stat.exists
 
 - name: use echo instead of whiptail
   command: cp /bin/echo /usr/bin/whiptail
+  when: not stat_result.stat.exists
 
 - name: Create pihole configuration directory
   become: True
@@ -27,6 +35,7 @@
     name="{{ fspath_pihole_config }}"
     state=directory
     mode=0755
+  when: not stat_result.stat.exists
 
 - name: Create pihole configuration
   become: True
@@ -36,11 +45,13 @@
     owner=root
     group=root
     mode=0644
+  when: not stat_result.stat.exists
 
 - name: Install Pi-Hole
   shell: "~/install-pihole.sh --unattended"
   register: dbg_install_pihole
   tags: pihole
+  when: not stat_result.stat.exists
 
 - name: Set PiHole to update every week
   become: True
@@ -49,9 +60,11 @@
     regexp: '^#(.*updatePihole.*)$'
     replace: '\1'
     backup: yes
+  when: not stat_result.stat.exists
 
 - name: Restore whiptail to fix some annoying bugs in the pihole installer
   command: mv /usr/bin/whiptail.bak /usr/bin/whiptail
+  when: not stat_result.stat.exists
 
 - name: 'Reboot'
   shell: sleep 2 && reboot
@@ -60,5 +73,5 @@
   ignore_errors: true
 
 - name: "Wait for Raspberry PI to come back"
-  local_action: wait_for host={{ ansible_host }} port=22 state=started delay=10
+  local_action: wait_for host={{ ansible_host }} port=22 state=started delay=60
   become: false
